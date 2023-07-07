@@ -1,0 +1,47 @@
+
+  "project_info": {
+    "project_number": "351176125861",
+    "project_id": "coastal-5892d",
+    "storage_bucket": "coastal-5892d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351176125861:android:91996b39591804089f8c4c",
+        "android_client_info": {
+          "package_name": "com.example.coastal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351176125861-490cfuc0acaoprvm9c43t0r5lb5jpcvc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coastal",
+            "certificate_hash": "4db437aaef2d846d78ecaa3dd1dcb3659f898e5d"
+          }
+        },
+        {
+          "client_id": "351176125861-c2du623qomeafdmiben48bpg8plofpqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpklX3AcMWlunoDgMQplU6DiKCyUR2YqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351176125861-c2du623qomeafdmiben48bpg8plofpqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
