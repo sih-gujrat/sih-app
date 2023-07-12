@@ -4,18 +4,20 @@ List<List<String>> sweetSayings = [
   ["We’ll help you", "In any way we can,"],
   ["You are Strong", "and courageous"]
 ];
-
+//https://floodlist.com/news
+//  "https://a-z-animals.com/blog/the-deadliest-floods-of-all-time/"
+//https://ffs.india-water.gov.in/
 List<String> articleTitle = [
-  "Pakistani women are inspiring country",
-  "We have to end Violance",
-  "Be a change",
-  "You are strong"
+  "Sop To Follow In Floods",
+  "Deadliest Floods And their Impact",
+  "Recent Floods",
+  "Flood Forecasts"
 ];
 List<String> imageSliders = [
-  "https://media.istockphoto.com/photos/silhouette-of-super-strong-successful-businesswoman-picture-id1249879109?k=20&m=1249879109&s=612x612&w=0&h=I-joEMjqkq1wCJZJeLWUCd1d2HcB5WxBShdkA9YM0cg=",
-  "https://media.istockphoto.com/vectors/young-woman-looks-at-the-mirror-and-sees-her-happy-reflection-vector-id1278815846?k=20&m=1278815846&s=612x612&w=0&h=JUTmV9Of-_ILOfXBfV9Cmp_41yuTliSdFIcZy5LKuss=",
+  "https://images.indianexpress.com/2023/06/2023_6img16_Jun_2023_PTI06_16_2023_RPT167A-1-1.jpg",
+  "https://bsmedia.business-standard.com/_media/bs/img/misc/2022-09/05/full/20220830155L.jpg",
   "https://media.istockphoto.com/vectors/mental-health-or-psychology-concept-with-flowering-human-head-vector-id1268669581?k=20&m=1268669581&s=612x612&w=0&h=YVLTKCZXKugEn40aqOkir4vcoFeTUAQToa1i3AFYRNU=",
-  "https://media.istockphoto.com/photos/confidence-and-strength-concept-picture-id1086700012?k=20&m=1086700012&s=612x612&w=0&h=1wWVN3AB7BH7o3y2A2b-NG3HB9H6Dwkc9OLz2lxgwAY=",
+  "https://cdn.discordapp.com/attachments/1092352225596162069/1127304048895344690/yshpapa6969_make_a_vector_image_to_flood_forecast_8a3b463c-fca7-493f-b35d-826dbd457c6b.png",
 ];
 
 List<List<String>> articles = [

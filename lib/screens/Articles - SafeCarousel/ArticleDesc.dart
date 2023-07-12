@@ -51,7 +51,7 @@ class ArticleDesc extends StatelessWidget {
           ),
           ArticleImage(
               imageStr:
-                  "https://www.unwomen.org/-/media/headquarters/images/sections/news/stories/2017/11/fiji_varanisesemaisamoa_rakirakimarket_1_675pxwide.jpg?la=en&vs=1317"),
+                  "https://www.who.int/news-room/questions-and-answers/item/how-do-i-protect-my-health-in-a-flood?gclid=Cj0KCQjwkqSlBhDaARIsAFJANkilGVe1I3FOHss-UYURyvaKfGKqVziVs9txAejrEj5ZtL2GBRkGcZgaAkyOEALw_wcB#"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(articles[0][0]),

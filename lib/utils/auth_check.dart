@@ -50,8 +50,11 @@ class AuthCheck extends StatelessWidget {
 
       ],
       child: Consumer<AuthProvider>(
-        builder: (ctx, auth, _) => MaterialApp(
-            title: 'MyShop',
+        builder: (ctx, auth, _) => MaterialApp
+          (
+          debugShowCheckedModeBanner: false,
+
+          title: 'MyShop',
             theme: ThemeData(
               primarySwatch: Colors.purple,
               brightness: Brightness.light,

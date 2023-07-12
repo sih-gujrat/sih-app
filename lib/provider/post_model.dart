@@ -1,8 +1,10 @@
 
 import 'package:coastal/repo/home_repo.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 final url = 'https://ggy7td6r07.execute-api.us-east-1.amazonaws.com/api/client/getposts';
 
 class Post {
@@ -21,20 +23,6 @@ class Post {
     required this.genuine,
     required this.pid,
   });
-}
-Future<List<dynamic>> fetchPosts() async {
-  final response = await http.get(Uri.parse(url));
-
-  if (response.statusCode == 200) {
-    // Parse the response body using jsonDecode
-    final jsonData = jsonDecode(response.body);
-    // Access the 'all_posts' list from the JSON data
-    final allPosts = jsonData['all_posts'];
-
-    return allPosts;
-  } else {
-    throw Exception('Failed to fetch posts');
-  }
 }
 
 class PostProvider extends ChangeNotifier {
@@ -70,11 +58,14 @@ String image = '';
 
 
   Future<void> fetchPosts() async {
+    Dio dio = Dio();
     try {
+      final response1 = await dio.get(url);
+
       final response = await http.get(Uri.parse(url));
       final responseData = json.decode(response.body);
 
-      if (response.statusCode == 200) {
+      if (response != null && response.statusCode == 200) {
         final List<dynamic> postList = responseData['all_posts'];
         _posts = postList.map((postData) =>
             Post(
@@ -90,7 +81,7 @@ String image = '';
         throw Exception('Failed to fetch posts');
       }
     } catch (error) {
-      throw Exception('Failed to connect to the API');
+      print(error.toString());
     }
   }
 

@@ -35,16 +35,19 @@ class SafeCarousel extends StatelessWidget {
                         //   ),
                         // ),
                         if (index == 0) {
-                          launchUrl(Uri.parse("https://gulfnews.com/world/asia/pakistan/womens-day-10-pakistani-women-inspiring-the-country-1.77696239"));
+                          launchUrl(Uri.parse("https://www.who.int/news-room/questions-and-answers/item/how-do-i-protect-my-health-in-a-flood?gclid=Cj0KCQjwkqSlBhDaARIsAFJANkijx8wlqobW9XymjNBlhXbakvUFLjg8kQuDtd7WJf9IESSBBKyEMswaAsOMEALw_wcB#"));
 
-
+//https://floodlist.com/news
+//  "https://a-z-animals.com/blog/the-deadliest-floods-of-all-time/"
+//https://ffs.india-water.gov.in/
                         } else if (index == 1) {
-                          launchUrl(Uri.parse("https://plan-international.org/ending-violence/16-ways-end-violence-girls"));
+                          launchUrl(Uri.parse("https://floodlist.com/news"));
 
                         } else if (index == 2) {
-                          navigateToRoute(context, ArticleDesc(index: index));
+                          launchUrl(Uri.parse("https://a-z-animals.com/blog/the-deadliest-floods-of-all-time/"));
+
                         } else {
-                          launchUrl(Uri.parse("https://www.healthline.com/health/womens-health/self-defense-tips-escape"));
+                          launchUrl(Uri.parse('https://ffs.india-water.gov.in/'));
 
 
                         }

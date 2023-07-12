@@ -183,9 +183,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       navigatorKey:  NavigationService.navigatorKey,
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+
       ),
       navigatorObservers: [NavigationHistoryObserver()],
       home: const MyApp1(),

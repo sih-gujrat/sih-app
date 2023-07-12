@@ -62,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
 
     final List<Widget> widgetOptions = <Widget>[
       Home(),
-      SignUpScreen(),
+      PostCard(),
       PostScreen(),      Maps(),
     ];
 
@@ -118,7 +118,7 @@ class _MainScreenState extends State<MainScreen> {
               ListTile(
                 title: Text('Item 1'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PostScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PostCard()));
                 },
               ),
               ListTile(

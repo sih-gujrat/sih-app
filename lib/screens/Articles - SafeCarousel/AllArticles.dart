@@ -85,7 +85,7 @@ class _AllArticlesState extends State<AllArticles>
                                 //   ),
                                 // ),
                                 if (index == 0) {
-                                  launchUrl(Uri.parse("https://gulfnews.com/world/asia/pakistan/womens-day-10-pakistani-women-inspiring-the-country-1.77696239"));
+                                  launchUrl(Uri.parse("https://www.who.int/news-room/questions-and-answers/item/how-do-i-protect-my-health-in-a-flood?gclid=Cj0KCQjwkqSlBhDaARIsAFJANkilGVe1I3FOHss-UYURyvaKfGKqVziVs9txAejrEj5ZtL2GBRkGcZgaAkyOEALw_wcB#"));
 
                                 } else if (index == 1) {
                                   launchUrl(Uri.parse("https://plan-international.org/ending-violence/16-ways-end-violence-girls"));
