@@ -12,7 +12,6 @@ class HomeRepository {
     var url = Uri.parse('https://ggy7td6r07.execute-api.us-east-1.amazonaws.com/api/admin/upload'); // Replace with your API endpoint
     try{
       DateTime now = DateTime.now();
-      String formattedDate = DateFormat('kk:mm:ss \n EEE d MMM').format(now);
 
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
@@ -25,7 +24,7 @@ class HomeRepository {
     request.fields['description'] = description; // Replace with the actual value
     request.fields['latitude'] ="${position.latitude}"; // Replace with the actual value
     request.fields['longitude'] = "${position.longitude}"; // Replace with the actual value
-    request.fields['time'] = formattedDate; // Replace with the actual value
+    request.fields['time'] = '$now.month'; // Replace with the actual value
 
 
     var res = await request.send();

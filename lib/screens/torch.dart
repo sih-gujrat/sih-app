@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:torch_light/torch_light.dart';
 
 
@@ -15,10 +14,7 @@ class _TorchAppState extends State<TorchApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       supportedLocales: const [Locale('en', '')],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
+
       home: TorchController(),
     );
   }

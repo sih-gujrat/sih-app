@@ -1,5 +1,6 @@
 
 import 'package:coastal/helpers/validators.dart';
+import 'package:coastal/screens/main_class.dart';
 import 'package:coastal/utils/customcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -228,23 +229,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   ElevatedButton(
                       onPressed: () async {
-                        bool? isValid = _formKey.currentState
-                            ?.validate();
-                        if (isValid!) {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          // bool isSuccessful = await authProvider.signup(
-                          //     _emailController.text.trim(),
-                          //     _passwordController.text.trim(),
-                          //     context);
-                          isLoading = false;
-                          // if (!isSuccessful) {
-                          //   setState(() {});
-                          // } else {
-                          //   newPage();
-                          // }
-                        }
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen()));
                       },
                       style: ButtonStyle(
                           padding: MaterialStateProperty.all(

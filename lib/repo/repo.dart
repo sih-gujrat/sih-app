@@ -253,9 +253,8 @@ class DataProvider extends ChangeNotifier {
   List<DataModel> get items => _items;
 fetchData() async {
     final dio = Dio();
-
     try {
-      final response = await dio.get('http://ec2-13-232-165-154.ap-south-1.compute.amazonaws.com/data/latest');
+      final response = await dio.get('http://ec2-13-232-165-154.ap-south-1.compute.amazonaws.com:5000/data/latest');
       if (response.statusCode == 200) {
         final responseData = response.data;
         print(responseData);

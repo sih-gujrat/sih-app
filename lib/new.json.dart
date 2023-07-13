@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:torch_light/torch_light.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -62,10 +61,7 @@ class _NewState extends State<New> {
 
     return MaterialApp(
       supportedLocales: const [Locale('en', '')],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
+
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Torch & Audio Player'),

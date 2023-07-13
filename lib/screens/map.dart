@@ -83,14 +83,11 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> with SingleTickerProv
 
   BitmapDescriptor? secondLocationIcon;
   TextEditingController latitudeController =//desnation
-  TextEditingController(text: "13.0354");
+  TextEditingController(text: "23.030357");
   TextEditingController longitudeController =//destination
-  TextEditingController(text: "77.5988");
+  TextEditingController(text: "72.517845");
+//13.0240° N, 77.6433° E
 
-  TextEditingController avoidlatitudeController =//avoid location
-  TextEditingController(text: "13.0061");
-  TextEditingController avoidlongitudeController =//avoid location
-  TextEditingController(text: "77.6594");
   Polyline? routePolyline;
   bool isRouteCreating = false;
   late final GoogleMapController _controller;

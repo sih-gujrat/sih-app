@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coastal/helpers/routing.dart';
 import 'package:coastal/screens/main_class.dart';
+import 'package:coastal/screens/signUp.dart';
 import 'package:coastal/screens/splash.dart';
 import 'package:coastal/utils/auth_check.dart';
 import 'package:flutter/material.dart';
@@ -150,7 +151,7 @@ class _sliderState extends State<slider> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(context, SlidePageRoute( page: MainScreen()));
+                  Navigator.pushReplacement(context, SlidePageRoute( page: SignUpScreen()));
                 },
                 child: Ink(
                   decoration: BoxDecoration(
@@ -256,7 +257,7 @@ class _sliderState extends State<slider> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(context, SlidePageRoute( page: MainScreen()));
+                  Navigator.pushReplacement(context, SlidePageRoute( page: SignUpScreen()));
 
                 },
                 child: Ink(
@@ -356,7 +357,7 @@ class _sliderState extends State<slider> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(context, SlidePageRoute( page: MainScreen()));
+                  Navigator.pushReplacement(context, SlidePageRoute( page: SignUpScreen()));
 
                 },
                 child: Ink(

@@ -12,7 +12,7 @@ class Post {
   final String longitude;
   final String time;
   final String filenames;
-  final String genuine;
+ // final String genuine;
   final String pid;
 
   Post({
@@ -20,7 +20,7 @@ class Post {
     required this.longitude,
     required this.time,
     required this.filenames,
-    required this.genuine,
+   // required this.genuine,
     required this.pid,
   });
 }
@@ -65,7 +65,7 @@ String image = '';
       final response = await http.get(Uri.parse(url));
       final responseData = json.decode(response.body);
 
-      if (response != null && response.statusCode == 200) {
+      if (response.statusCode == 200) {
         final List<dynamic> postList = responseData['all_posts'];
         _posts = postList.map((postData) =>
             Post(
@@ -73,7 +73,7 @@ String image = '';
               longitude: postData['longitude'],
               time: postData['time'],
               filenames: postData['filenames'],
-              genuine: postData['genuine'],
+              //genuine: postData['genuine'],
               pid: postData['pid'],
             )).toList();
         notifyListeners();

@@ -58,7 +58,7 @@ class _PostCardState extends State<PostCard> {
                           const SizedBox(height: 2),
                           Text(
                             '${posts[index].longitude} • ${posts[index]
-                                .latitude} •${posts[index].time}',
+                                .latitude}' ,
                             style: const TextStyle(fontSize: 12, color: Colors
                                 .grey),
                           )
