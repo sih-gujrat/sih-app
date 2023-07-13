@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
     final List<Widget> widgetOptions = <Widget>[
       Home(),
       PostCard(),
-      PostScreen(),      Maps(),
+      PostScreen(),      Maps(),New()
     ];
 
     return Scaffold(
