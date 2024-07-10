@@ -230,9 +230,9 @@ class Repo {
 
 
 class DataModel {
-  final String intensity;
-  final String latitude;
-  final String longitude;
+  final double intensity;
+  final double latitude;
+  final double longitude;
 
   DataModel({
     required this.intensity,
@@ -254,19 +254,15 @@ class DataProvider extends ChangeNotifier {
 fetchData() async {
     final dio = Dio();
     try {
-      final response = await dio.get('http://ec2-13-232-165-154.ap-south-1.compute.amazonaws.com:5000/data/latest');
+      final response = await dio.get('https://01707xbim6.execute-api.ap-south-1.amazonaws.com/api/admin/getAllDisasters');
       if (response.statusCode == 200) {
-        final responseData = response.data;
-        print(responseData);
-        final intensity = responseData['intensity'];
-        final latitude = responseData['latitude'];
-        final longitude = responseData['longitude'];
-
-        _items = [
-          //DataModel(intensity: "", latitude: "77.6221", longitude: "13.0448"),
-          DataModel(intensity: intensity, latitude: latitude, longitude: longitude),
-        ];
-
+        List<dynamic> responseData = response.data; // response.data should be a List
+        _items = responseData.map((disaster) {
+          double intensity = double.parse(disaster['location']['intensity'].toString());
+          double latitude = double.parse(disaster['location']['latitude'].toString());
+          double longitude = double.parse(disaster['location']['longitude'].toString());
+          return DataModel(intensity: intensity, latitude: latitude, longitude: longitude);
+        }).toList();
         notifyListeners();
       } else {
         throw Exception('Failed to fetch data');

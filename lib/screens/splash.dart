@@ -5,7 +5,6 @@ import 'package:coastal/helpers/routing.dart';
 import 'package:coastal/utils/auth_check.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

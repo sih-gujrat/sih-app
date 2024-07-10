@@ -22,12 +22,12 @@ class PoliceEmergency extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
                   Color(0xFFFD8080),
-                  Color(0xFFFB8580),
+                  const Color(0xFFFB8580),
                   Color(0xFFFBD079),
                 ],
               ),

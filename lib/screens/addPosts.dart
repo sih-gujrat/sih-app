@@ -128,7 +128,7 @@ class _PostScreenState extends State<PostScreen>
                                       child: Image(
                                         height: 200,
                                         width: 200,
-                                        image: Image.network('https://cdn.discordapp.com/attachments/1092352225596162069/1127307409363316796/yshpapa6969_a_simple_circle_with_gallery_icon_0c17f650-4f48-4cc2-920e-8042bc704141.png').image,
+                                        image: Image.network('https://media.istockphoto.com/id/1175387759/vector/camera-icon.jpg?s=612x612&w=0&k=20&c=paC1ZkU31dH2B5epXqT_cYOyca5uqh4v0WpFUldCUBE=').image,
                                       ))
                                       : ClipRRect(
                                     borderRadius: BorderRadius.circular(25),

@@ -2,7 +2,7 @@
 class Assets {
   Assets._();
 
-  static const String articles  SafeCarouselAllArticles = 'lib/screens/Articles - SafeCarousel/AllArticles.dart';
+  static var String articles  SafeCarouselAllArticles = 'lib/screens/Articles - SafeCarousel/AllArticles.dart';
   static const String articles  SafeCarouselArticleDesc = 'lib/screens/Articles - SafeCarousel/ArticleDesc.dart';
   static const String articles  SafeCarouselSafeCarousel = 'lib/screens/Articles - SafeCarousel/SafeCarousel.dart';
   static const String assetsAddContact = 'lib/assets/add-contact.png';

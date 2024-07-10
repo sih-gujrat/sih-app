@@ -215,8 +215,8 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> with SingleTickerProv
                                           double.parse(longitudeController.text)),
 
                                       avoidLocation: LatLng(
-                                          double.parse(dataProvider.items[0].longitude),
-                                          double.parse(dataProvider.items[0].latitude)),
+                                         (dataProvider.items[0].longitude),
+                                          (dataProvider.items[0].latitude)),
                                       colors: [Colors.red, Colors.blue, Colors.green],
                                     );
                                     print("$pointLatLng");

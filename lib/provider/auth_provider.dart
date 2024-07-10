@@ -13,7 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class AuthProvider with ChangeNotifier {
-  String token = '';
   String _id = '';
   String student_id = '';
   String institute_id = '';
@@ -62,11 +61,18 @@ class AuthProvider with ChangeNotifier {
 
   SharedPrefrence get saveData => _saveData;
 
-  bool get isAuth {
-    print("here" + _id != '');
-    // ignore: avoid_print
-    return _id.isNotEmpty && type != "register";
+  SharedPreferences? _prefs;
+
+  // Initialize SharedPreferences and fetch stored values
+  Future<void> init() async {
+    _prefs = await SharedPreferences.getInstance();
   }
+
+  // Getters for UID and token that rely on already initialized _prefs
+  String get token => _prefs?.getString('token') ?? '';
+
+  // Property to check if the user is authenticated
+  bool get isAuth => token.isNotEmpty;
 
   String get _token {
     if (token.isNotEmpty) {

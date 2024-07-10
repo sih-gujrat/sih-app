@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gemma/flutter_gemma.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
 import 'package:coastal/utils/NotificationManager.dart';
@@ -13,62 +14,104 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'home_page.dart';
 
+import 'package:just_audio/just_audio.dart';
+
+Future<void> playAudioForTenSeconds() async {
+  // Create a new instance of the audio player
+  final AudioPlayer audioPlayer = AudioPlayer();
+
+  try {
+    // Load the audio from the provided URL
+    audioPlayer.setAsset('assets/buzzers.mp3');
+
+    // Play the audio
+    await audioPlayer.play();
+
+    // Wait for 10 seconds
+    await Future.delayed(Duration(seconds: 10));
+
+    // Stop the audio after 10 seconds
+    await audioPlayer.stop();
+  } catch (e) {
+    // Handle potential errors, e.g., audio source not found, connection issues
+    print('Error playing audio: $e');
+  } finally {
+    // Always release the player to free up resources
+    await audioPlayer.dispose();
+  }
+}
+
+void showLocalNotification(RemoteMessage message) {
+  RemoteNotification? notification = message.notification;
+  AndroidNotification? android = message.notification?.android;
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
+
+  if (notification != null && android != null) {
+
+    flutterLocalNotificationsPlugin.show(
+      notification.hashCode,
+      notification.title,
+      notification.body,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'high_importance_channel',
+          'High Importance Notifications',
+          channelDescription: 'E Drives Notification Channel',
+          importance: Importance.max,
+          icon:
+          '@mipmap/launcher_icon', // Ensure this icon is available in your project
+        ),
+      ),
+    );
+  }
+  else {
+
+    flutterLocalNotificationsPlugin.show(
+      DateTime.now().millisecondsSinceEpoch ~/ 1000,
+      message.data['title'] ?? 'No Title',
+      message.data['body'] ?? 'No Body',
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'high_importance_channel',
+          'High Importance Notifications',
+          channelDescription: 'E Drives Notification Channel',
+          importance: Importance.max,
+          icon: '@mipmap/launcher_icon', // Ensure this icon is available in your project
+        ),
+      ),
+    );
+    playAudioForTenSeconds();
+
+  }
+  playAudioForTenSeconds();
+
+}
+
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  await setupFlutterNotifications();
+  showLocalNotification(message);
 }
 
-/// Initialize the [FlutterLocalNotificationsPlugin] package.
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  if (!kIsWeb) {
-    await setupFlutterNotifications();
-  }
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    showLocalNotification(message);
+
+    });
+  FlutterGemmaPlugin.instance.init(
+    maxTokens: 512,
+    temperature: 1.0,
+    topK: 1,
+    randomSeed: 1,
+  );
   runApp(const MyApp());
-}
-
-late AndroidNotificationChannel channel;
-
-bool isFlutterLocalNotificationsInitialized = false;
-
-Future<void> setupFlutterNotifications() async {
-  if (isFlutterLocalNotificationsInitialized) {
-    return;
-  }
-  channel = const AndroidNotificationChannel(
-    'high_importance_channel', // id
-    'High Importance Notifications', // title
-    description:
-    'This channel is used for important notifications.', // description
-    importance: Importance.high,
-  );
-
-  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  /// Create an Android Notification Channel.
-  ///
-  /// We use this channel in the `AndroidManifest.xml` file to override the
-  /// default FCM channel to enable heads up notifications.
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-      AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-
-  /// Update the iOS foreground notification presentation options to allow
-  /// heads up notifications.
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
-  isFlutterLocalNotificationsInitialized = true;
 }
 
 class MyApp extends StatefulWidget {
@@ -85,98 +128,8 @@ class _MyAppState extends State<MyApp> {
   bool _resolved = false;
 
   @override
-  void initState() {
-    final firebaseMessaging = FCM();
-    firebaseMessaging.setNotifications();
 
-    FirebaseMessaging.instance.getInitialMessage().then(
-          (value) => setState(
-            () {
-          _resolved = true;
-          initialMessage = value?.data.toString();
-          if (initialMessage != null) {
-            // var route = NavigationHistoryObserver().top;
-            // if(route!=null && route.settings.name!=NotificationScreen.routeName){
-            //   NavigationService.navigatorKey.currentState?.pushNamed(NotificationScreen.routeName);
-            // }
-          }
-        },
-      ),
-    );
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      showFlutterNotification(message);
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      // var route = NavigationHistoryObserver().top;
-      // if(route!=null && route.settings.name!=NotificationScreen.routeName){
-      //   NavigationService.navigatorKey.currentState?.pushNamed(NotificationScreen.routeName);
-      // }
-    });
-    init();
-    super.initState();
-  }
-
-  void showFlutterNotification(RemoteMessage message) {
-    RemoteNotification? notification = message.notification;
-    AndroidNotification? android = message.notification?.android;
-    if (notification != null && android != null && !kIsWeb) {
-      flutterLocalNotificationsPlugin.show(
-        notification.hashCode,
-        notification.title,
-        notification.body,
-        NotificationDetails(
-          android: AndroidNotificationDetails(
-            channel.id,
-            channel.name,
-            channelDescription: channel.description,
-            // TODO add a proper drawable resource to android, for now using
-            //      one that already exists in example app.
-            icon: 'ic_launcher',
-          ),
-        ),
-      );
-    }
-  }
-
-  void init() async{
-    const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('ic_launcher');
-    final DarwinInitializationSettings initializationSettingsDarwin =
-    DarwinInitializationSettings(
-        onDidReceiveLocalNotification: (id, title, body, payload) {
-          if (payload != null) {
-            debugPrint('notification payload: $payload');
-          }
-        });
-    final InitializationSettings initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid,
-        iOS: initializationSettingsDarwin);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);
-  }
-
-  void onDidReceiveNotificationResponse(NotificationResponse notificationResponse) async {
-    //when user click on notification this method call
-   /* var route = NavigationHistoryObserver().top;
-    if(route!=null && route.settings.name!=NotificationScreen.routeName){
-      NavigationService.navigatorKey.currentState?.pushNamed(NotificationScreen.routeName).then((value) {
-        FBroadcast.instance().broadcast(
-          "update_count",
-          value: 0,
-        );
-      });
-    }
-    else{
-      NavigationService.navigatorKey.currentState?.pushReplacementNamed(NotificationScreen.routeName).then((value) {
-        FBroadcast.instance().broadcast(
-          "update_count",
-          value: 0,
-        );
-      });
-    }*/
-  }
 
   @override
   Widget build(BuildContext context) {

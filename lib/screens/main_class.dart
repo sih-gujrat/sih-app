@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:coastal/new.json.dart';
 import 'package:coastal/screens/Emergency.dart';
 import 'package:coastal/screens/audio.dart';
+import 'package:coastal/screens/chat_screen.dart';
 import 'package:coastal/screens/home.dart';
 import 'package:coastal/screens/map.dart';
 import 'package:coastal/screens/post_card.dart';
+import 'package:coastal/screens/safe_volunteer_map.dart';
 import 'package:coastal/screens/signUp.dart';
 import 'package:coastal/screens/addPosts.dart';
 
@@ -54,19 +56,24 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final List<String> headers = [
       "HomePage",
-      "Gallery",
+      "Extraction Routes",
       "Add",
-      "Notifications",
+      "Safe Spots",
       "Profile",
     ];
 
     final List<Widget> widgetOptions = <Widget>[
       Home(),
-      PostCard(),
-      PostScreen(),      Maps(),New()
+      Maps(),
+      PostScreen(),
+      HomeView(),
+      ChatScreen()
     ];
 
     return Scaffold(
+
+
+
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -118,14 +125,15 @@ class _MainScreenState extends State<MainScreen> {
               ListTile(
                 title: Text('Item 1'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PostCard()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PostCard()));
                 },
               ),
               ListTile(
                 title: Text('Item 2'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>New()));
-
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => New()));
                 },
               ),
               // Add more items as needed
@@ -148,7 +156,6 @@ class _MainScreenState extends State<MainScreen> {
           Icon(Icons.add_circle, size: 30),
           Icon(Icons.notifications, size: 30),
           Icon(Icons.person, size: 30),
-
         ],
         onTap: _onItemTapped,
         index: _selectedIndex,

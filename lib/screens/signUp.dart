@@ -1,5 +1,6 @@
 
 import 'package:coastal/helpers/validators.dart';
+import 'package:coastal/screens/googleSignIn.dart';
 import 'package:coastal/screens/main_class.dart';
 import 'package:coastal/utils/customcolors.dart';
 import 'package:flutter/material.dart';
@@ -229,7 +230,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   ElevatedButton(
                       onPressed: () async {
-                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen()));
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginPage()));
                       },
                       style: ButtonStyle(
                           padding: MaterialStateProperty.all(

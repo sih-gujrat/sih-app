@@ -1,4 +1,4 @@
-
+{
   "project_info": {
     "project_number": "351176125861",
     "project_id": "coastal-5892d",
@@ -37,6 +37,13 @@
             {
               "client_id": "351176125861-c2du623qomeafdmiben48bpg8plofpqd.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "351176125861-633k1017cg0qp578m6i6ut6sushu322h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.coastal"
+              }
             }
           ]
         }

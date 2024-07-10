@@ -394,7 +394,7 @@ class _sliderState extends State<slider> {
 blueButton() {
   return ElevatedButton.styleFrom(
     elevation: 0,
-    primary: Colors.transparent,
+    //primary: Colors.transparent,
     minimumSize: const Size.fromHeight(50),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(30),

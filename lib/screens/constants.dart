@@ -17,7 +17,8 @@ List<String> imageSliders = [
   "https://images.indianexpress.com/2023/06/2023_6img16_Jun_2023_PTI06_16_2023_RPT167A-1-1.jpg",
   "https://bsmedia.business-standard.com/_media/bs/img/misc/2022-09/05/full/20220830155L.jpg",
   "https://media.istockphoto.com/vectors/mental-health-or-psychology-concept-with-flowering-human-head-vector-id1268669581?k=20&m=1268669581&s=612x612&w=0&h=YVLTKCZXKugEn40aqOkir4vcoFeTUAQToa1i3AFYRNU=",
-  "https://cdn.discordapp.com/attachments/1092352225596162069/1127304048895344690/yshpapa6969_make_a_vector_image_to_flood_forecast_8a3b463c-fca7-493f-b35d-826dbd457c6b.png",
+  "https://images.indianexpress.com/2023/06/2023_6img16_Jun_2023_PTI06_16_2023_RPT167A-1-1.jpg",
+
 ];
 
 List<List<String>> articles = [
