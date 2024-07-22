@@ -3,6 +3,7 @@ import 'package:coastal/provider/auth_provider.dart';
 import 'package:coastal/provider/mapu_view.dart';
 import 'package:coastal/provider/post_model.dart';
 import 'package:coastal/provider/register_provider.dart';
+import 'package:coastal/provider/upload_file.dart';
 import 'package:coastal/repo/repo.dart';
 import 'package:coastal/screens/main_class.dart';
 import 'package:coastal/screens/slider.dart';
@@ -33,6 +34,10 @@ class AuthCheck extends StatelessWidget {
         ),
 
 
+        ChangeNotifierProxyProvider<AuthProvider, FileUploadProvider>(
+          create: (ctx) => FileUploadProvider(),
+          update: (ctx,auth,_) => FileUploadProvider(),
+        ),
         ChangeNotifierProxyProvider<AuthProvider, PostProvider>(
           create: (ctx) => PostProvider(),
           update: (ctx,auth,_) => PostProvider(),

@@ -13,9 +13,12 @@ import 'package:coastal/screens/addPosts.dart';
 import 'package:coastal/screens/slider.dart';
 import 'package:coastal/screens/splash.dart';
 import 'package:coastal/screens/torch.dart';
+import 'package:coastal/screens/upload.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -65,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
     final List<Widget> widgetOptions = <Widget>[
       Home(),
       Maps(),
-      PostScreen(),
+      Upload(),
       HomeView(),
       ChatScreen()
     ];
@@ -115,7 +118,7 @@ class _MainScreenState extends State<MainScreen> {
                   color: Colors.blue,
                 ),
                 child: Text(
-                  'Drawer Header',
+                  '',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -123,20 +126,20 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               ListTile(
-                title: Text('Item 1'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PostCard()));
+                title: Text('SignOut'),
+                onTap: () async{
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  await prefs.clear();
+
+                  // Sign out the user from Firebase
+                  await FirebaseAuth.instance.signOut();
+
+                  // Navigate to another page
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => slider()));
                 },
               ),
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => New()));
-                },
-              ),
-              // Add more items as needed
+
+
             ],
           ),
         ),

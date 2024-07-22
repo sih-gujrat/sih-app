@@ -54,9 +54,10 @@ dependencies:
   geolocator: ^9.0.2
   google_sign_in: ^6.2.1
   firebase_auth: ^5.1.2
+  device_info: ^2.0.0
 
 
-  intl: ^0.18.0
+  intl: ^0.19.0
   image_picker: ^0.8.7
   dio: ^5.1.1
   webview_flutter: ^4.2.0
@@ -92,14 +93,25 @@ dependencies:
   google_maps_flutter: ^2.2.8
 
   sliding_up_panel: ^2.0.0+1
+  flutter_nearby_connections:
+    git:
+      url: https://github.com/champeauxr/flutter_nearby_connections
+      ref: master
+  flutter_styled_toast: ^2.0.0
   freezed: ^2.3.2
   flutter_typeahead: ^4.3.7
   http: ^0.13.5
   google_fonts: ^4.0.3
+  dotted_border: ^2.0.0+1
+  iconsax: ^0.0.8
+  file_picker: ^6.0.0
+  mime: ^1.0.5
+  path: ^1.9.0
 
   flutter_polyline_points: ^1.0.0
   google_maps_cluster_manager: ^3.0.0+1
   fluster: ^1.2.0
+  device_info_plus: ^10.1.0
 
 
 

@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
       _locationData = await location.getLocation();
 
       var response = await http.post(
-        Uri.parse('https://c6c1-122-172-86-146.ngrok-free.app/api/admin/addUser'), // Change to your API endpoint
+        Uri.parse('https://01707xbim6.execute-api.ap-south-1.amazonaws.com/api/admin/addUser'), // Change to your API endpoint
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
