@@ -9,6 +9,7 @@ import 'package:coastal/screens/LiveSafeSpots/PharmacyCard.dart';
 import 'package:coastal/screens/LiveSafeSpots/PoliceStationCard.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 class Home extends StatefulWidget {
@@ -20,9 +21,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int quoteIndex = 0;
+  String? userId;
+
+  Future<void> _loadUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getString('user_id');
+      print(userId);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    _loadUserId();
     getRandomInt(false);
   }
 

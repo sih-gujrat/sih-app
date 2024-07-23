@@ -107,6 +107,7 @@ dependencies:
   file_picker: ^6.0.0
   mime: ^1.0.5
   path: ^1.9.0
+  geocoding: ^3.0.0
 
   flutter_polyline_points: ^1.0.0
   google_maps_cluster_manager: ^3.0.0+1

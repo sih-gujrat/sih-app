@@ -69,8 +69,8 @@ void showLocalNotification(RemoteMessage message) {
 
     flutterLocalNotificationsPlugin.show(
       DateTime.now().millisecondsSinceEpoch ~/ 1000,
-      message.data['title'] ?? 'No Title',
-      message.data['body'] ?? 'No Body',
+      notification!.title,
+      notification.body,
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'high_importance_channel',
@@ -105,12 +105,12 @@ Future<void> main() async {
     showLocalNotification(message);
 
     });
-  FlutterGemmaPlugin.instance.init(
-    maxTokens: 512,
-    temperature: 1.0,
-    topK: 1,
-    randomSeed: 1,
-  );
+  // FlutterGemmaPlugin.instance.init(
+  //   maxTokens: 512,
+  //   temperature: 1.0,
+  //   topK: 1,
+  //   randomSeed: 1,
+  // );
   runApp(const MyApp());
 }
 

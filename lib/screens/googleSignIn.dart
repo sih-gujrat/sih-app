@@ -17,15 +17,19 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _residentialAddressController = TextEditingController();
+  final TextEditingController _countFamilyMembersController = TextEditingController();
+  final TextEditingController _locationOfRequestController = TextEditingController();
+  final TextEditingController _countOfRequestsController = TextEditingController();
+  final TextEditingController _requestedResourcesController = TextEditingController();
   String _errorMessage = '';
   FirebaseMessaging _messaging = FirebaseMessaging.instance;
   Future<void> _login() async {
     try {
 
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+
       String? fcmToken = await _messaging.getToken();
       Location location = new Location();
       bool _serviceEnabled;
@@ -51,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       _locationData = await location.getLocation();
 
       var response = await http.post(
-        Uri.parse('https://01707xbim6.execute-api.ap-south-1.amazonaws.com/api/admin/addUser'), // Change to your API endpoint
+        Uri.parse('https://mustang-helpful-lively.ngrok-free.app/api/admin/addUser'), // Change to your API endpoint
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -61,16 +65,28 @@ class _LoginPageState extends State<LoginPage> {
           'fcm_token': fcmToken ?? '',
           'latitude': _locationData.latitude.toString(),
           'longitude': _locationData.longitude.toString(),
+          'name': _nameController.text,
+          'age': _ageController.text,
+          'residentialAddress': _residentialAddressController.text,
+          'countFamilyMembers': _countFamilyMembersController.text,
         }),
       );
-print(response.body);
+      var responseBody = jsonDecode(response.body);
+      print(responseBody);
+
       // Store UID in local storage
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', fcmToken ?? '');  // Storing the token
-
+      await prefs.setString('token', fcmToken ?? '');
+      String userId = responseBody['user']?['user_id'] ?? '';  // Using the null-aware operator to handle potential nulls
+// Storing the token
+      await prefs.setString('user_id', userId ?? '');
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
       await prefs.setString('uid', userCredential.user?.uid ?? '');
 
-      Navigator.pushReplacement(
+     await Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => MainScreen()));
 
       print("User logged in: ${userCredential.user?.email}");
@@ -106,21 +122,61 @@ print(response.body);
                 icon: Icons.email,
                 isPassword: false,
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               _buildTextField(
                 controller: _passwordController,
                 label: 'Password',
                 icon: Icons.lock,
                 isPassword: true,
               ),
+              SizedBox(height: 10),
+
+              // Additional fields here:
+              _buildTextField(
+                controller: _nameController,
+                label: 'Name',
+                icon: Icons.person,
+                isPassword: false,
+              ),
+              SizedBox(height: 10),
+
+              _buildTextField(
+                controller: _ageController,
+                label: 'Age',
+                icon: Icons.calendar_today,
+                isPassword: false,
+              ),
+              SizedBox(height: 10),
+
+              _buildTextField(
+                controller: _residentialAddressController,
+                label: 'Residential Address',
+                icon: Icons.home,
+                isPassword: false,
+              ),
+              SizedBox(height: 10),
+
+              _buildTextField(
+                controller: _countFamilyMembersController,
+                label: 'Count of Family Members',
+                icon: Icons.family_restroom,
+                isPassword: false,
+              ),
+              SizedBox(height: 10),
+
+
+
+
               SizedBox(height: 40),
               ElevatedButton(
-                onPressed: _login,
+                onPressed:()async{
+                  await _login();
+                } ,
                 child: Text('Login'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 50,),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),

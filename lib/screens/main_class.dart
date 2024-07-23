@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
       "HomePage",
       "Extraction Routes",
       "Add",
-      "Safe Spots",
+      "GIS Map",
       "Profile",
     ];
 
